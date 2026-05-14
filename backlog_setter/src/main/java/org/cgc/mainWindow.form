@@ -84,6 +84,8 @@
               <component id="62ffc" class="javax.swing.JTextArea" binding="output">
                 <constraints/>
                 <properties>
+                  <background color="-15066319"/>
+                  <editable value="false"/>
                   <font name="Consolas" size="16" style="0"/>
                   <lineWrap value="false"/>
                   <text value="Nothing"/>
