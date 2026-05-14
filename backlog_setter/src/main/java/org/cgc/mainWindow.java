@@ -10,6 +10,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/*
+TODO Check jar+tree.json functionality
+TODO Continue with:
+TODO    reload button
+TODO    load tree.json on init
+TODO    function panel options:
+TODO        show json data (actual output)
+TODO        declare backlog set rules
+TODO        start week backlog
+TODO        show day backlog
+TODO        backlog beat tracker
+*/
+//FIXME Jar with dependencies not running
+
 public class mainWindow {
     private static FileManager service;
     public static String filePath = "";
@@ -28,31 +42,42 @@ public class mainWindow {
 
         //Theme FlatLaf OneDark
         FlatOneDarkIJTheme.setup();
-
         //Fluid resize
         System.setProperty("sun.awt.noerasebackground", "true");
         Toolkit.getDefaultToolkit().setDynamicLayout(true);
 
         // App window startup
-        SwingUtilities.invokeLater(() -> {
-            try {
-                JFrame window = new JFrame("The Backlog");
-                mainWindow gui = new mainWindow();
-                window.setContentPane(gui.mainPanel);
+        try {
+            SwingUtilities.invokeLater(() -> {
+                try {
+                    JFrame window = new JFrame("The Backlog");
+                    mainWindow gui = new mainWindow();
+                    window.setContentPane(gui.mainPanel);
+                    gui.initUIComponents(); // Call initialization AFTER content pane is set
 
-                //Set start parameters
-                window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                window.setSize(1600, 900);
-                window.setVisible(true);
+                    //Set start parameters
+                    window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    window.setSize(1600, 900);
+                    window.setVisible(true);
 
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public mainWindow() {
+        // Constructor should ideally be empty or only contain non-UI dependent logic
+        // UI component initialization and listeners should be in a separate method
+        // that is called after the components are guaranteed to be initialized.
+    }
+
+    // This method initializes UI components and sets up listeners
+    private void initUIComponents() {
         output.setEditable(false);
         //Button listener
         buttonChoose.addActionListener(new ActionListener() {
