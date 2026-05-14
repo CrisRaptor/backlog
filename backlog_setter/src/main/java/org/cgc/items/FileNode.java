@@ -19,30 +19,31 @@ public class FileNode {
     @Override
     public String toString() {
         String data = "";
-        if (esCarpeta) {
-            data += "C-";
-        } else {
-            data += "F-";
-        }
+        //Item full name
         data += nombre;
         if (!extension.isEmpty()){
             data += "." + extension;
         }
-        if (!hijos.isEmpty()) {
-            folderDeepness++;
-            data += " {\n";
-            for (FileNode hijo : hijos) {
+        //If folder show brackets
+        if (esCarpeta) {
+            data += " { ";
+            if (!hijos.isEmpty()) {
+                folderDeepness++;
+                data += "\n";
+                for (FileNode hijo : hijos) {
+                    for (int i = 0; i < folderDeepness; i++) { //Deepness spacing
+                        data += "\t";
+                    }
+                    data += hijo.toString() + "\n";
+                }
+                folderDeepness--;
                 for (int i = 0; i < folderDeepness; i++) { //Deepness spacing
                     data += "\t";
                 }
-                data += hijo.toString() + "\n";
-            }
-            folderDeepness--;
-            for (int i = 0; i < folderDeepness; i++) { //Deepness spacing
-                data += "\t";
             }
             data += "}";
         }
+
         return data;
     }
 }

@@ -6,7 +6,7 @@
 
     <groupId>org.cgc</groupId>
     <artifactId>backlog_setter</artifactId>
-    <version>0.1.2-beta</version>
+    <version>0.2.0-beta</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

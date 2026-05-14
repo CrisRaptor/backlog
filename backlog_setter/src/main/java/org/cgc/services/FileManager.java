@@ -58,6 +58,7 @@ public class FileManager {
         File file = new File("tree.json");
         if (!file.exists()) {
             System.err.println("Service: tree.json file not found");
+            return null;
         }
         try (FileReader reader = new FileReader(file)) {
             FileNode tree = gson.fromJson(reader, FileNode.class);
